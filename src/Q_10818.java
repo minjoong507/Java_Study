@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
 
-public class Main {
+public class Q_10818 {
 	public static void main(String args[]) throws Exception{
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		int case_num = Integer.parseInt(bf.readLine());
