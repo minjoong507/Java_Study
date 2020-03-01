@@ -1,18 +1,29 @@
 import java.io.*;
-import java.util.Arrays;
+import java.util.Stack;
 
 public class Main {
 	public static void main(String args[]) throws Exception{
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		int case_num = Integer.parseInt(bf.readLine());
-		String[] input = bf.readLine().split(" ");
-		int[] temp = new int[case_num];
-		for (int i=0;i< case_num;i++) {
-			temp[i] = Integer.parseInt(input[i]);
+		Stack<String> stack = new Stack();		
+		String[] Line = bf.readLine().trim().split("");
+		int result = 0;
+		
+		for (int i = 0; i < Line.length; i++) {
+			String node = Line[i];
+		
+			 if (node.equals(")")) {
+				String temp = "0";
+				while (!temp.equals("(")) {
+					temp = stack.pop();
+					result ++;
+				}
+				result --;			
+				result = result * Integer.parseInt(stack.pop());
+			 }
+			else {
+				stack.push(node);
+				}
 		}
-		
-		Arrays.sort(temp);
-		System.out.println(temp[0] +" "+temp[temp.length -1]);
-		
+		System.out.println(stack.size()+result);
 	}
 }
