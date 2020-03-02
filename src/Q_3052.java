@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +6,7 @@ public class Q_3052 {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		
-		for(int i = 0 ; i < 10 ; i ++)			// 배열에 9개의 수를 넣음
+		for(int i = 0 ; i < 10 ; i ++)			
 		{
 			int rest =sc.nextInt() % 42;
 			if (!arr.contains(rest)) {
@@ -15,7 +14,5 @@ public class Q_3052 {
 			}
 		}
 		System.out.println(arr.size());
-
-		
 	}
 }
