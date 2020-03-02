@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -73,7 +71,4 @@ public class Q_2178 {
 		
 		}
 	}
-    
-        
-    
 }
