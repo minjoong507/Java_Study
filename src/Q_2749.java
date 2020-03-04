@@ -15,13 +15,10 @@ public class Q_2749 {
 		long ans = r % period;
 		
 		for (i=2;i<fibo.length;i++) {
-			fibo[i] = (fibo[i-1] + fibo[i-2]) % 1000000;
+			fibo[i] = (long)((fibo[i-1] + fibo[i-2]) % Math.pow(10, 6));
 			if (i==ans)
 				break;
 		}
-		System.out.println(fibo[i]);
-		
-		
-		
+		System.out.println(fibo[(int)ans]);
 	}
 }
