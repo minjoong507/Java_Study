@@ -20,6 +20,5 @@ public class Q_10872 {
 			int ans = fact(A);
 			System.out.println(ans);
 		}
-
 	}
 }
