@@ -1,66 +1,48 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-class data {
-	static long MAX = Long.MAX_VALUE / 2;
-	long front;
-	long back;
+class Data {
+    static long LMAX = (long) 1e17;
+    long front, back;
 
-	public data() {
-		this.front = 0;
-		this.back = 0;
-	}
-
-	public data sum(data x, data y) {
-		data re = new data();
-
-		re.front = x.front + y.front;
-
-		if (x.back + y.back > MAX) {
-			re.back = x.back + y.back - MAX;
-			re.front++;
-		} else
-			re.back = x.back + y.back;
-
-		return re;
-	}
-
+    public Data(long front, long back){
+        this.front = front;
+        this.back = back;
+    }
+    public Data add(Data o){
+        long over = (this.back + o.back > LMAX) ? 1 : 0;
+        return new Data(this.front+o.front+over,
+                this.back+o.back-over*LMAX);
+    }
 }
 
-public class Q_2407 {
-	static long MAX = Long.MAX_VALUE / 2;
-	static data[][] arr = new data[101][101];
+class Solution_Q_2407{
+    Scanner sc = new Scanner(System.in);
+    final int MAXN = 100 + 2;
 
-	public static void main(String args[]) throws Exception {
-		Scanner sc = new Scanner(System.in);
-		data dt = new data();
-		
-		
-		int A = sc.nextInt();
-		int B = sc.nextInt();
-		arr[1][0] = new data();
-		arr[1][0].back = 1; 
-		
-		arr[1][1] = new data();
-		arr[1][1].back = 1;
+    Data[][] comb = new Data[MAXN][MAXN];
 
-		for (int i = 2; i <= A; i++) {
-			for (int j = 0; j <= i; j++) {
-				if (i == j || j == 0) {
-					arr[i][j] = new data();
-					arr[i][j].back = 1;
-				}
-				else
-					arr[i][j] = dt.sum(arr[i - 1][j - 1], arr[i - 1][j]);
-			}
-		}
+    public Solution_Q_2407(){
+        comb[1][0] = new Data(0, 1);
+        comb[1][1] = new Data(0, 1);
 
-		
-		if (arr[A][B].front != 0)
-			System.out.println(arr[A][B].front + "" + arr[A][B].back);
-		else
-			System.out.println(arr[A][B].back);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        for (int n = 2; n <= N; n++) {
+            for (int m = 0; m <= n; m++) {
+                comb[n][m] = (n == m || m == 0) ?
+                        new Data(0, 1) : comb[n-1][m-1].add(comb[n-1][m]);
+            }
+        }
+        String ans = (comb[N][M].front > 0 ? comb[N][M].front+"" : "")
+                + "0".repeat(17-(comb[N][M].back+"").length())
+                + comb[N][M].back;
+        System.out.println(ans);
+    }
+}
 
-	}
-
-
+public class Main {
+    public static void main(String[] args) throws IOException {
+        new Solution_Q_2407();
+    }
 }
