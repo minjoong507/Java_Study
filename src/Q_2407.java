@@ -34,9 +34,7 @@ class Solution_Q_2407{
                         new Data(0, 1) : comb[n-1][m-1].add(comb[n-1][m]);
             }
         }
-        String ans = (comb[N][M].front > 0 ? comb[N][M].front+"" : "")
-                + "0".repeat(17-(comb[N][M].back+"").length())
-                + comb[N][M].back;
+        String ans = (comb[N][M].front > 0 ? comb[N][M].front+"" : "")+ comb[N][M].back;
         System.out.println(ans);
     }
 }
