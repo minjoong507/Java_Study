@@ -39,7 +39,6 @@ public class Q_2485 {
 		for (int j = 0; j < diff.length; j++) {
 			sum += diff[j] / g - 1;
 		}
-		System.out.println(g);
 		System.out.println(sum);
 	}
 
