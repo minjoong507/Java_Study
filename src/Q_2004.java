@@ -10,11 +10,10 @@ public class Q_2004 {
 		
 		long five = fivesearch(B);
 		long two = twosearch(B);
-		System.out.println(five);
+		
 		long five_2 = fivesearch(A);
 		long two_2 = twosearch(A);
-		
-		
+
 		long five_3 = fivesearch(C);
 		long two_3 = twosearch(C);
 		
