@@ -1,9 +1,6 @@
 import java.util.Scanner;
 
 public class Q_7568 {
-	static int now_tall = 0;
-	static int now_weight = 0;
-
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		StringBuilder sb = new StringBuilder();
