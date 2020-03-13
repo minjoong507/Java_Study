@@ -1,71 +1,66 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Q_14889 {
 	static int[][] score;
-	static boolean[][] team;
-	
-	
-	public static int team_score(int[] arr, boolean[][] arr_team) {
+	static boolean[] team;
+	static int N;
+	static int min = Integer.MAX_VALUE;
+
+	public static int team_score() {
 		int sum1 = 0;
 		int sum2 = 0;
-		
-		for (int i = 0; i<arr.length; i++) {
-			for (int j =0; j<arr.length; j++) {
-				if (arr_team[i][j])
+
+		for (int i = 0; i < score.length; i++) {
+			for (int j = 0; j < score.length; j++) {
+				if (team[i] && team[j])
 					sum1 += score[i][j];
-			
-				else
+
+				if (!team[i] && !team[j])
 					sum2 += score[i][j];
 			}
 		}
 		return Math.abs(sum1 - sum2);
 	}
-	
-	public static void maketeam(int[] arr, int k) {
-		int team_num = k / 2;
-		for(int i = 0; i<team_num; i++) {
-			for(int j =0; j<arr.length; j++) {
-				if (arr[j] != i)
-					
-				else
-					continue;
+
+	public static void maketeam(int start, int size) {
+		if (size == N / 2) {
+			min = Math.min(min, team_score());
+			return;
+		} 
+		else {
+			for (int i = start; i < N; i++) {
+				if (team[i] != true) {
+					team[i] = true;
+					maketeam(start + 1, size + 1);
+					team[i] = false;
+
+				}
+
 			}
+
 		}
-		
-		
-		
-		
+
 	}
-	
-	
-	
-	public static void main(String args[]) throws Exception{
-		Scanner sc = new Scanner(System.in);
-		
-		int N = sc.nextInt();
+
+	public static void main(String args[]) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+
+		N = Integer.parseInt((br.readLine()));
+
 		score = new int[N][N];
-		team = new boolean[N][N];
-		int[] team1 = new int[N/2];
-		int[] team2 = new int[N/2];
-		
-		
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<N; j++) {
-				score[i][j] = sc.nextInt();
-				team[i][j] = true;
+		team = new boolean[N];
+
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+			System.out.println(st.countTokens());
+			for (int j = 0; j < N; j++) {
+				score[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		sc.close();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		maketeam(0, 0);
+		System.out.println(min);
 	}
+
 }
