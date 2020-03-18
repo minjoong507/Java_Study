@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -24,7 +23,6 @@ public class Q_2309 {
 					for (int k = 0; k < tall.length; k++) {
 						if (k != i && k != j)
 							System.out.println(tall[k]);
-
 					}
 					System.exit(0);
 				}
